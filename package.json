@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/@productled/activation",
+    "packages/samples/react-sample"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.0.1"
+  }
+}
