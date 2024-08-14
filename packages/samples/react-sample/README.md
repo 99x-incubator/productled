@@ -1,4 +1,4 @@
-# Productled sample React application
+# Productled Sample React Application
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is a simple React application that demonstrates how to use the `@productled/activation' library.
 
@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run build --workspace='@productled/activation`
 ### `npm start`
 
 Runs the app in the development mode.\
