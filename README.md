@@ -24,18 +24,33 @@ A Product-led Growth (PLG) platform is vital for digital products because it emb
 - [Revenue Features](#revenue-features)
 - [Referrals Features](#referrals-features)
 
-
 ## **Acquisition Features**
 
 By optimizing the first impressions and entry points, the platform ensures new users are smoothly transitioned from prospects to active users. Tools like easy trial initiation and flexible pricing models lower the barrier to entry, increasing the likelihood of adoption.
 
-### Trial Accounts
+### Consent Management
 
-Trial Account Creation allows users to sign up for a free trial account with minimal effort. By simplifying the registration process and offering immediate access to the product, this feature encourages users to explore the platform without much commitment. Trials model can be limited in time, limited in features, reverse trials or Freemium.
+Cookie and Privacy Consent UI Components help digital products comply with data privacy regulations by providing users with clear information about data collection and usage. These components typically include cookie banners, consent forms, and privacy policy links, allowing users to make informed decisions about their data. By ensuring transparency and user control over data privacy, this feature builds trust and credibility with users.
+
+![Spotlights](docs/images/concent.png)
+
+Read more about [Consent Management](docs/concent.md).
+
+### Trial Status
+
+If the user is in a trial period, the Trial Status feature provides a clear indication of the remaining time, encouraging users to explore the product and make the most of the trial period. By displaying the trial status prominently, this feature helps users track their progress and motivates them to engage with the product before the trial ends.
+
+![Spotlights](docs/images/trials.png)
+
+Read more about [Consent Management](docs/trials.md).
 
 ### Pricing Models
 
 Flexible Pricing Models offer users a range of options to choose from, based on their needs and budget. By providing different pricing tiers, subscription plans, or pay-as-you-go models, this feature caters to a diverse user base, making the product accessible to a wider audience. It helps to convert prospects into paying customers by offering a pricing structure that aligns with their preferences.
+
+![Spotlights](docs/images/pricing.png)
+
+Read more about [Consent Management](docs/pricing.md).
 
 ## **Activation Features**
 
@@ -45,7 +60,7 @@ The platform accelerates user engagement by helping them discover and use the pr
 
 In-app Spotlights are targeted notifications or messages that highlight new features or important areas within the product. These spotlights are designed to be non-intrusive, appearing at the right time and place to draw the user's attention without interrupting their workflow. This feature helps users quickly learn about new functionalities, ensuring they stay informed and engaged.
 
-![Spotlights](docs/images/spotlights.png)
+![Spotlights](docs/images/spotlight.png)
 
 Read more about [Feature Spotlights](docs/spotlights.md).
 
