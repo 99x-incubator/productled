@@ -1,0 +1,1 @@
+e.g., https://docs.frigade.com/v2/component/tour?_gl=1*1tzo1i*_gcl_au*ODk2ODIzOTg1LjE3MjMzMTE0Njk.*_ga*NDA2NDY2NzAyLjE3MjMzMTE0Njk.*_ga_WL6B5EKN4K*MTcyNDAzNzQwMy41LjAuMTcyNDAzNzQwMy4wLjAuMA (however instead of a component, we should have a declarative configuration)

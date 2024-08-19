@@ -1,0 +1,1 @@
+e.g., https://docs.frigade.com/v2/component/survey/nps (however instead of a component, we should have a declarative configuration)
