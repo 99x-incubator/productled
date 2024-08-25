@@ -38,7 +38,7 @@ export class Spotlight {
 
         // Design the spotlight based on the configuration
         spotlight.innerHTML = `
-            <div class="productled-item">
+            <div class="productled-spotlight">
             <style>
             .beacon{
                 position:absolute;

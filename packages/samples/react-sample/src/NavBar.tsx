@@ -1,18 +1,10 @@
 
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Spotlights, Flow } from '@productled/activation';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css'; // Import the CSS file
-import { spotlights } from './ProductledConf';
 
 
 const NavBar: React.FC = () => {
-
-  useEffect(() => {
-    Spotlights.applyEffects();
-  }, [useLocation()]);
-
-  Spotlights.add(spotlights);
 
   return (
     <nav>

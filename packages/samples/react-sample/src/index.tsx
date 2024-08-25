@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Spotlights } from '@productled/spotlights';
+import { conf } from './ProductledConf';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+console.log('registering spotlight conf in App');
+const spotlights = new Spotlights();
+spotlights.init(conf);
+
 root.render(
   <React.StrictMode>
     <App />

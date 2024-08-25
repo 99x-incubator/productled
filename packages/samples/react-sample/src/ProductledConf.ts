@@ -1,6 +1,6 @@
-import { Flow } from '@productled/activation';
+import { Flow } from '@productled/spotlights';
 
-const spotlights: Flow[] = [{
+const conf: Flow[] = [{
     trigger: {
         url: '/page/subpage',
         element: '.spot-me'
@@ -26,4 +26,4 @@ const spotlights: Flow[] = [{
     }
 }];
 
-export { spotlights };
+export { conf };
