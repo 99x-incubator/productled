@@ -1,32 +1,48 @@
 
-export interface Content {
-    title: string;
-    body: string;
-    link: string;
-}
 
-export interface Design {
-    icon: string;
-    color: string;
+// Define the Trigger interface
+interface Trigger {
+  url: string;
+  selector: string;
 }
 
 export interface Positioning {
-    alignment: string;
-    left: string;
-    top: string;
+  alignment: string;
+  left: string;
+  top: string;
 }
+
+// Define the Schedule interface
+interface Schedule {
+  start: { date: string; time: string };
+  end: { date: string; time: string };
+}
+
+// Define the Flow interface
+export interface SpotlightConf {
+  title: String;
+  description: String;
+  link: String;
+  trigger: Trigger;
+  frequency: string;
+  schedule: Schedule;
+  positioning: Positioning;
+}
+
 
 export class Spotlight {
     private targetElement: Element;
-    private content: Content;
-    private design: Design;
+    private title: String;
+    private description:String;
+    private link: String;
     private positioning: Positioning;
 
-    constructor(targetElement: Element, content: Content, design: Design, positioning: Positioning) {
+    constructor(targetElement: Element, title: String, description: String, link: String, positioning: Positioning) {
         this.targetElement = targetElement;
-        this.content = content;
-        this.design = design;
         this.positioning = positioning;
+        this.title = title;
+        this.description = description;
+        this.link = link;
     }
 
     create(): void {

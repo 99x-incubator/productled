@@ -1,1 +1,2 @@
-export * from './Spotlights';
+import SpotlightPlugin from './SpotlightPlugin';
+export {SpotlightPlugin};

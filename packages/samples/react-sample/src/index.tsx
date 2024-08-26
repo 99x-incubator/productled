@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Spotlights } from '@productled/spotlights';
-import { conf } from './ProductledConf';
+import { SpotlightPlugin } from '@productled/spotlights';
+import productledConf from './productled-config.json';
+import { Productled } from '@productled/core';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-console.log('registering spotlight conf in App');
-const spotlights = new Spotlights();
-spotlights.init(conf);
+// get the Productled instance
+const productled = Productled.getInstance();
+// load the configuration
+productled.loadConfig(productledConf);
+// register the plugins
+productled.registerPlugin(new SpotlightPlugin());
 
 root.render(
   <React.StrictMode>
