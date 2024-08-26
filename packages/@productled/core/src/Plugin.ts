@@ -1,7 +1,6 @@
-type pluginName = string;
 
 interface Plugin {
-    get Name(): pluginName;
+    get Name(): string;
     create(element: HTMLElement, conf: any): void;
     removeAll(): void;
 }
