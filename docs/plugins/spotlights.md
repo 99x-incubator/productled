@@ -10,7 +10,7 @@ The Spotlights plugin is a powerful tool that allows you to create in-app spotli
 
 ## Installation
 
-To get started with the Spotlights plugin, you need to install it into your Productled project. First, ensure that you have already installed the core Productled library. If you haven't done so, follow the [Productled Installation Guide](./installation.md) first.
+To get started with the Spotlights plugin, you need to install it into your Productled project. First, ensure that you have already installed the core Productled library. If you haven't done so, follow the [Productled Installation Guide](../installation) first.
 
 Once the core library is installed, you can install the Spotlights plugin using npm:
 
