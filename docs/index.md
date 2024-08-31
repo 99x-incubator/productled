@@ -64,7 +64,7 @@ Productled thrives on community contributions. Whether you're a developer, produ
 
 ## Support
 
-Need help? Check out our [Support and FAQs](./support.md) for common questions or join our community discussions on GitHub to connect with other users and contributors.
+Need help? join our community discussions on GitHub to connect with other users and contributors.
 
 ---
 
