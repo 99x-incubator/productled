@@ -1,6 +1,5 @@
 ---
 title: Spotlights
-layout: home
 parent: Plugins
 nav_order: 1
 ---
