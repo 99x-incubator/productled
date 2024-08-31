@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SpotlightPlugin } from '@productled/spotlights';
+import { SpotlightsPlugin } from '@productled/spotlights';
 import productledConf from './productled-config.json';
 import { Productled } from '@productled/core';
 
@@ -16,7 +16,7 @@ const productled = Productled.getInstance();
 // load the configuration
 productled.loadConfig(productledConf);
 // register the plugins
-productled.registerPlugin(new SpotlightPlugin());
+productled.registerPlugin(new SpotlightsPlugin());
 
 root.render(
   <React.StrictMode>

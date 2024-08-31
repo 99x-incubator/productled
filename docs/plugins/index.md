@@ -12,9 +12,20 @@ Productled offers a variety of plugin libraries to extend its capabilities. You 
 npm install @productled/<plugin-name>
 ```
 
-Register the plugin with Productled Core at application start.
+e.g.,
 
-e.g., in file: index.tsx
+```bash
+npm install @productled/spotlights
+```
+
+Register the plugin with Productled Core at application start. e.g., in file: index.tsx
+
+``` typescript
+productled.registerPlugin(new <PluginClass>());
+```
+
+e.g.,
+
 ``` typescript
 productled.registerPlugin(new SpotlightPlugin());
 ```

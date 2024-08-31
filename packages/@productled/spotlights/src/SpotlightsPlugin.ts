@@ -1,7 +1,7 @@
 import { type Plugin } from "@productled/core";
 import { Spotlight } from "./Spotlight";
 
-class SpotlightPlugin implements Plugin {
+class SpotlightsPlugin implements Plugin {
     private key: string = "spotlights";
 
     get Name(): string {
@@ -22,4 +22,4 @@ class SpotlightPlugin implements Plugin {
     }
 }
 
-export default SpotlightPlugin;
+export default SpotlightsPlugin;
