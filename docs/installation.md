@@ -4,12 +4,15 @@ layout: home
 nav_order: 2
 ---
 
-# Installation Guide {: .no_toc }
+# Installation Guide 
+{: .no_toc }
 
 Welcome to the Productled Library Installation Guide. This guide will walk you through the process of setting up and configuring the Productled Library in your project. By following these steps, you'll be able to leverage the powerful features provided by Productled to enhance your application's user experience.
 
-## Table of contents {: .no_toc .text-delta }
+## Table of contents 
+{: .no_toc .text-delta }
 
+1. TOC
 {:toc}
 
 ## Install the Core Package
