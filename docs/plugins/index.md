@@ -1,6 +1,5 @@
 ---
 title: Plugins
-layout: home
 nav_order: 3
 ---
 
@@ -21,4 +20,4 @@ productled.registerPlugin(new SpotlightPlugin());
 
 ## Available Plugins
 
-- [Spotlights Plugin documentation](plugins/spotlights.md)
+- [Spotlights Plugin documentation](spotlights)
