@@ -34,33 +34,29 @@ Productled is designed to be highly extensible through its growing list of plugi
 ### 1. **Spotlights Plugin**
 
 This plugin allows you to create in-app spotlights that guide users through key features of your application. Spotlights can be used to highlight important UI elements or to create onboarding tours for new users.
-[GitHub: @productled/spotlights](https://github.com/99x-incubator/productled/tree/main/packages/spotlights)
+[@productled/spotlights](plugins/spotlights)
 
 ### 2. **Progress Plugin**
 
 Track user progress within your app with the Progress Plugin. This plugin allows you to create visual progress bars, step trackers, and other user engagement tools to help users stay on track as they navigate through key experiences in your product.
-[GitHub: @productled/progress](https://github.com/99x-incubator/productled/tree/main/packages/progress)
 
 ### 3. **Checklists Plugin**
 
 This plugin helps you create and manage in-app checklists for user tasks, onboarding steps, or feature discovery workflows. It's ideal for guiding users through complex processes or ensuring they complete all the necessary steps for activation.
-[GitHub: @productled/checklists](https://github.com/99x-incubator/productled/tree/main/packages/checklists)
 
 ### 4. **Modals Plugin**
 
 The Modals Plugin allows you to add customizable modal dialogs within your app. Use modals to display critical information, onboarding tips, or important notices that require user interaction.
-[GitHub: @productled/modals](https://github.com/99x-incubator/productled/tree/main/packages/modals)
 
 ### 5. **Tooltips Plugin**
 
 Tooltips are a great way to provide additional context or guidance to your users. This plugin allows you to add dynamic tooltips to your application to explain features, offer tips, or provide inline help.
-[GitHub: @productled/tooltips](https://github.com/99x-incubator/productled/tree/main/packages/tooltips)
 
 Each plugin is highly configurable and integrates seamlessly with the core Productled library. As the community grows, more plugins will be added to this ecosystem to enhance the product-led growth strategy.
 
 ## Getting Started
 
-Ready to dive in? Head over to the [Installation Guide](./installation.md) to set up Productled in your project. Whether you're looking to implement one feature or leverage the full suite of tools, our documentation will guide you through every step.
+Ready to dive in? Head over to the [Installation Guide](./installation) to set up Productled in your project. Whether you're looking to implement one feature or leverage the full suite of tools, our documentation will guide you through every step.
 
 ## Community and Contributions
 
