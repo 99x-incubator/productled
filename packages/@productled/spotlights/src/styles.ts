@@ -7,8 +7,8 @@ function createStyleElement(cssCode: string): HTMLStyleElement {
 const cssCode = `
   .beacon{
     position:absolute;
-    border-color: rgba(219, 40, 40, .75);
-    border-style: solid;
+    background-color: rgba(219, 40, 40, .4);
+    border-style: none;
     border-width: 1px;
     height:1em;
     width:1em;
