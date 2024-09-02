@@ -4,11 +4,9 @@
 <div align="center">Enabling products to thrive in AARRR Pirate Metrics (Acquisition, Activation, Revenue, Retention and Referrals)</div>
 <br />
 <div align="center">
-<a href="https://productled.github.io">Website</a> 
+<a href="https://99x-incubator.github.io/productled/">Documentation</a> 
 <span> · </span>
-<a href="https://productled.github.io">Demo</a> 
-<span> · </span>
-<a href="https://99x.io">by 99x</a> 
+<a href="https://github.com/99x-incubator/productled/tree/main/packages/samples/react-sample">Demo</a> 
 <br /><br />
 
 ![Hero Image](documents/images/hero.png)

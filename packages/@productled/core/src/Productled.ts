@@ -6,9 +6,6 @@ import PluginStore from './PluginStore';
 import DocumentService from './DocumentService';
 import { RouteListener } from "./RouteListener";
 
-type pluginName = string;
-
-
 /**
  * The Productled class represents the core functionality of the Productled library.
  * It provides methods for registering hooks, handling route changes, and retrieving configuration.
