@@ -1,14 +1,6 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Productled } from '@productled/core';
+import React from 'react';
 
 const ProductledInit: React.FC = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    Productled.getInstance().routeChanged();
-  }, [location.pathname]);
-
   return null;
 }
 

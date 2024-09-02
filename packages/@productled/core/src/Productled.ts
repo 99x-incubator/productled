@@ -4,6 +4,7 @@ import Plugin from './Plugin';
 import ConfigStore from './ConfigStore';
 import PluginStore from './PluginStore';
 import DocumentService from './DocumentService';
+import { RouteListener } from "./RouteListener";
 
 type pluginName = string;
 
@@ -18,6 +19,7 @@ class Productled {
   protected configStore: ConfigStore;
   protected pluginStore: PluginStore;
   protected documentService: DocumentService;
+  protected routeListener: RouteListener;
 
   /**
    * The constructor is private to ensure that the class is a singleton.
@@ -28,6 +30,7 @@ class Productled {
     this.pluginStore = new PluginStore();
     this.documentService = new DocumentService();
     this.configStore = new ConfigStore();
+    this.routeListener = new RouteListener();
   }
 
   /**
@@ -52,12 +55,11 @@ class Productled {
   /**
    * This method is called when the route changes. 
    * It retrieves the hooks for the current route and executes them.
+   * @param {string} url - The URL of the new route
    * @returns {Promise<void>}
    */
-  public routeChanged() {
-    
-    const currentRoute = window.location.pathname;
-    const hooks = this.hookStore.getHooks(currentRoute);
+  public routeChanged(url: string) {
+    const hooks = this.hookStore.getHooks(url);
 
     const hookExecuter = new HookExecuter(this.pluginStore, this.documentService);
     hookExecuter.executeHooks(hooks);
@@ -76,6 +78,7 @@ class Productled {
     // Get the hooks for the plugin and add them to the hook store
     const hooks = this.configStore.getHooks(pluginName);
     this.hookStore.addHooks(hooks, pluginName);
+    this.routeListener.addListener(this.routeChanged.bind(this));
   }
 
 }
