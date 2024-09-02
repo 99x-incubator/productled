@@ -70,27 +70,6 @@ productled.registerPlugin(new SpotlightPlugin());
 
 In this example, we're initializing the Productled instance, loading the configuration from productled-config.json, and registering the SpotlightPlugin plugin. You can register additional plugins similarly.
 
-## Set Up Route Listener
-
-Productled relies on route change events to activate and deactivate features based on the current route. It's important to inform Productled whenever a route change occurs in your application.
-
-Example: React Route Change Listener
-
-In a React application, you can use the useLocation hook from react-router-dom to detect route changes and then notify Productled:
-
-```typescript
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Productled } from '@productled/core';
-
-
-useEffect(() => {
-    Productled.getInstance().routeChanged();
-}, [location.pathname]);
-```
-
-In this example, we use the useEffect hook to call Productled.getInstance().routeChanged() whenever the location.pathname changes. This ensures that Productled is aware of the current route and can manage feature activation accordingly.
-
 ## Further Configuration and Plugin Usage
 
 Once you've completed the initial setup, you can start configuring and using the plugins you've installed. Each plugin may have its own specific configuration options, which you'll add to your productled-config.json file. Be sure to consult the documentation for each plugin to understand how to fully utilize its features.
