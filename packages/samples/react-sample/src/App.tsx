@@ -4,16 +4,12 @@ import Page from './Page'; // Import the existing page component
 import HomePage from './HomePage'; // Import another page component (create this if it doesn't exist)
 import SubPage from './SubPage'; // Import the sub-page component (create this if it doesn't exist)
 import NavBar from './NavBar';
-import ProductledInit from './ProductledInit';
 
 const App: React.FC = () => {
-
-
 
   return (
     <Router>
       <div className="App">
-      <ProductledInit/>
       <NavBar /> {/* Use the NavBar component */}
         <Routes>
           <Route path="/" element={<HomePage />} />

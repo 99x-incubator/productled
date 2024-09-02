@@ -31,6 +31,7 @@ class Productled {
     this.documentService = new DocumentService();
     this.configStore = new ConfigStore();
     this.routeListener = new RouteListener();
+    this.routeListener.addListener(this.routeChanged.bind(this));
   }
 
   /**
@@ -58,7 +59,7 @@ class Productled {
    * @param {string} url - The URL of the new route
    * @returns {Promise<void>}
    */
-  public routeChanged(url: string) {
+  private routeChanged(url: string) {
     const hooks = this.hookStore.getHooks(url);
 
     const hookExecuter = new HookExecuter(this.pluginStore, this.documentService);
@@ -78,7 +79,6 @@ class Productled {
     // Get the hooks for the plugin and add them to the hook store
     const hooks = this.configStore.getHooks(pluginName);
     this.hookStore.addHooks(hooks, pluginName);
-    this.routeListener.addListener(this.routeChanged.bind(this));
   }
 
 }
