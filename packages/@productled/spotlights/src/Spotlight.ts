@@ -1,4 +1,5 @@
-import style from './styles';
+import { StylesElement } from './StylesElement';
+
 export interface Positioning {
   alignment: string;
   left: string;
@@ -35,7 +36,9 @@ export class Spotlight {
         container.style.position = 'absolute';
         container.style.left = `${this.positioning.left}px`;
         container.style.top = `${this.positioning.top}px`;
-        container.appendChild(style);
+
+        const styles = new StylesElement();
+        container.appendChild(styles.Element);
         this.targetElement.appendChild(container);
 
         const spotlight = document.createElement('span');

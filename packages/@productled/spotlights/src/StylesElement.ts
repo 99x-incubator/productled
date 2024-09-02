@@ -1,13 +1,21 @@
-function createStyleElement(cssCode: string): HTMLStyleElement {
-  const styleElement = document.createElement('style');
-  styleElement.innerHTML = cssCode;
-  return styleElement;
-}
+class StylesElement {
+  private color: string;
 
-const cssCode = `
+  constructor(color: string = 'rgba(219, 40, 40, .4)') {
+    this.color = color;
+  }
+
+  public get Element(): HTMLStyleElement {
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = this.CssCode;
+    return styleElement;
+  }
+
+  get CssCode(): string {
+    return `
   .beacon{
     position:absolute;
-    background-color: rgba(219, 40, 40, .4);
+    background-color: ${this.color};
     border-style: none;
     border-width: 1px;
     height:1em;
@@ -25,7 +33,7 @@ const cssCode = `
     top:0;
     background-color:transparent;
     border-radius:50%;
-    box-shadow:0px 0px 2px 2px #DB2828;
+    box-shadow:0px 0px 2px 2px ${this.color};
     -webkit-animation:active 2s infinite linear;
     animation:active 2s infinite linear;
   }
@@ -78,7 +86,7 @@ const cssCode = `
     }
   }
 `;
+  }
+}
 
-
-const styleElement = createStyleElement(cssCode);
-export default styleElement;
+export { StylesElement };
