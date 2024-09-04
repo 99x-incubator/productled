@@ -115,6 +115,22 @@ Feature Request Forms enable users to submit ideas, suggestions, or requests for
 
 Read more about [Feature Requests](documents/feature-requests.md).
 
+### In-app help
+
+Gen AI-powered centralized in-app learning hub for product tutorials, tips, and community support, helping with onboarding and long-term retention.
+
+### Real-time Customer Support
+
+Embedded chat widget with automation for immediate assistance, reducing friction during onboarding.
+
+### Automated A/B Testing
+
+Automated A/B Testing: Provide a built-in framework for A/B testing to help teams experiment and improve features, pricing models, or messaging.
+
+### Gamification
+
+Introduce point systems, badges, or milestones to enhance user engagement.
+
 ## **Revenue Features**
 
 Monetization strategies are built into the product, encouraging users to upgrade or make additional purchases. Features that promote up-selling, renewals, and targeted discounts help maximize the revenue potential from existing customers, making the product to financially thrive.
