@@ -1,29 +1,33 @@
 import Hook from './Hook';
+import RouteMapper from "./RouteMapper";
 
 type route = string;
 
 class HookStore {
-
-    private hookDictionary: Record<route, Hook[]> = {};
+    private routeMapper: RouteMapper = new RouteMapper();
+    private hookMap: Map<Symbol, Hook[]> = new Map();
 
     public addHooks(hooks: Hook[], pluginName: string) {
         for (const hook of hooks) {
-            // Check if the definition is within schedule, if not skip
-            if (true || hook.trigger.isWithinSchedule()) {
-                // Check if the definition is already in the dictionary, if not add it
-                if (!this.hookDictionary[hook.trigger.url]) {
-                    this.hookDictionary[hook.trigger.url] = [];
-                }
-                // Add the plugin name to the definition
-                hook.pluginName = pluginName;
-                // Add the definition to the dictionary
-                this.hookDictionary[hook.trigger.url].push(hook);
+            const key = this.routeMapper.addRoute(hook.trigger.url);
+            let hooks = this.hookMap.get(key);
+            if (!hooks) {
+                hooks = [];
+                this.hookMap.set(key, hooks);
             }
+
+            hook.pluginName = pluginName;
+            hooks.push(hook);
         }
     }
 
     public getHooks(url: route): Hook[] {
-        return this.hookDictionary[url] || [];
+        const key = this.routeMapper.matchRoute(url);
+        if (!key) {
+            return [];
+        }
+
+        return this.hookMap.get(key) || [];
     }
 
 }
