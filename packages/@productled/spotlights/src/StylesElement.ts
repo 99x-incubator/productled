@@ -1,8 +1,10 @@
+import { Theme } from "@productled/core";
+
 class StylesElement {
   private color: string;
 
-  constructor(color: string = 'rgba(219, 40, 40, .4)') {
-    this.color = color;
+  constructor(theme: Theme) {
+    this.color = theme.primaryColor;
   }
 
   public get Element(): HTMLStyleElement {
@@ -15,7 +17,8 @@ class StylesElement {
     return `
   .beacon{
     position:absolute;
-    background-color: ${this.color};
+    background-color: var(--primaryColor);
+    opacity: 0.4;
     border-style: none;
     border-width: 1px;
     height:1em;
@@ -33,7 +36,7 @@ class StylesElement {
     top:0;
     background-color:transparent;
     border-radius:50%;
-    box-shadow:0px 0px 2px 2px ${this.color};
+    box-shadow:0px 0px 2px 2px var(--primaryColor);
     -webkit-animation:active 2s infinite linear;
     animation:active 2s infinite linear;
   }

@@ -1,4 +1,4 @@
-import { type Plugin } from "@productled/core";
+import { Theme, type Plugin } from "@productled/core";
 import { Spotlight } from "./Spotlight";
 
 class SpotlightsPlugin implements Plugin {
@@ -7,11 +7,11 @@ class SpotlightsPlugin implements Plugin {
     get Name(): string {
         return this.key;
     }
-    create(element: HTMLElement, spotlightConf: any): void {
+    create(element: HTMLElement, spotlightConf: any, theme: Theme): void {
         const { title, description, link, positioning } = spotlightConf;
         if (element) {
-            const spotlight = new Spotlight(element, title, description, link, positioning);
-            spotlight.create();
+            const spotlight = new Spotlight(element, theme);
+            spotlight.create(title, description, link, positioning);
         }
     }
     removeAll(): void {
