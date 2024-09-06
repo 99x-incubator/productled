@@ -12,8 +12,8 @@ The Product-led library allows users to customize the look and feel of its compo
 
 The library's default theme consists of the following properties:
 
-```typescript
-export const defaultTheme: Theme = {
+```css
+
     primaryColor: '#3498db',
     secondaryColor: '#2ecc71',
     backgroundColor: '#ffffff',
@@ -28,7 +28,6 @@ export const defaultTheme: Theme = {
     successColor: '#2ecc71',
     warningColor: '#f39c12',
     infoColor: '#3498db',
-};
 ```
 
 ## Overriding the Default Theme
@@ -51,6 +50,18 @@ To dynamically update the theme in your application, use the following method:
 
 ```typescript
 Productled.getInstance().applyCustomTheme(customTheme: Partial<Theme>);
+```
+
+example:
+
+```typescript
+const customTheme = {
+    primaryColor: '#ff0000',
+    secondaryColor: '#00ff00',
+    // ... other theme properties
+};
+
+Productled.getInstance().applyCustomTheme(customTheme);
 ```
 
 This method allows you to pass a custom theme object to override the default or previously applied theme properties. You only need to provide the properties you want to change.
