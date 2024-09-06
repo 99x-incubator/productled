@@ -1,3 +1,4 @@
+import { Theme } from '@productled/core';
 import { StylesElement } from './StylesElement';
 
 export interface Positioning {
@@ -14,30 +15,24 @@ export interface SpotlightConf {
 }
 export class Spotlight {
     private targetElement: Element;
-    private title: String;
-    private description:String;
-    private link: String;
-    private positioning: Positioning;
+    private theme: Theme;
 
-    constructor(targetElement: Element, title: String, description: String, link: String, positioning: Positioning) {
+    constructor(targetElement: Element, theme: Theme) {
         this.targetElement = targetElement;
-        this.positioning = positioning;
-        this.title = title;
-        this.description = description;
-        this.link = link;
+        this.theme = theme;
     }
 
-    create(): void {
+    create(title: String, description: String, link: String, positioning: Positioning): void {
         // Position the spotlight relative to the target element
         (this.targetElement as HTMLElement).style.position = 'relative';
 
         const container = document.createElement('div');
         container.classList.add('productled-spotlight');
         container.style.position = 'absolute';
-        container.style.left = `${this.positioning.left}px`;
-        container.style.top = `${this.positioning.top}px`;
+        container.style.left = `${positioning.left}px`;
+        container.style.top = `${positioning.top}px`;
 
-        const styles = new StylesElement();
+        const styles = new StylesElement(this.theme);
         container.appendChild(styles.Element);
         this.targetElement.appendChild(container);
 

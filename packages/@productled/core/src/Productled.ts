@@ -1,10 +1,11 @@
-import HookExecuter from './HookExecuter';
-import HookStore from './HookStore';
-import Plugin from './Plugin';
+import HookExecuter from './hooks/HookExecuter';
+import HookStore from './hooks/HookStore';
+import Plugin from './plugins/Plugin';
 import ConfigStore from './ConfigStore';
-import PluginStore from './PluginStore';
+import PluginStore from './plugins/PluginStore';
 import DocumentService from './DocumentService';
 import { RouteListener } from "./RouteListener";
+import { Theme, ThemeManager } from './theme/ThemeManager';
 
 /**
  * The Productled class represents the core functionality of the Productled library.
@@ -17,6 +18,7 @@ class Productled {
   protected pluginStore: PluginStore;
   protected documentService: DocumentService;
   protected routeListener: RouteListener;
+  protected themeManager: ThemeManager;
 
   /**
    * The constructor is private to ensure that the class is a singleton.
@@ -28,6 +30,7 @@ class Productled {
     this.documentService = new DocumentService();
     this.configStore = new ConfigStore();
     this.routeListener = new RouteListener();
+    this.themeManager = new ThemeManager();
     this.routeListener.addListener(this.routeChanged.bind(this));
   }
 
@@ -43,6 +46,17 @@ class Productled {
     return Productled.instance;
   }
 
+
+  /**
+   * Applies a custom theme to the product.
+   * 
+   * @param customTheme - The partial theme object containing the custom theme properties.
+   * @returns void
+   */
+  public applyCustomTheme(customTheme: Partial<Theme>): void {
+    this.themeManager.applyCustomTheme(customTheme);
+  }
+  
   /**
    * This method registers the hook configuration with the Productled instance.
    */
@@ -59,7 +73,7 @@ class Productled {
   private routeChanged(url: string) {
     const hooks = this.hookStore.getHooks(url);
 
-    const hookExecuter = new HookExecuter(this.pluginStore, this.documentService);
+    const hookExecuter = new HookExecuter(this.pluginStore, this.documentService, this.themeManager.Theme);
     hookExecuter.executeHooks(hooks);
   }
 
