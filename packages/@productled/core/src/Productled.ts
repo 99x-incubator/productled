@@ -4,8 +4,8 @@ import Plugin from './plugins/Plugin';
 import ConfigStore from './ConfigStore';
 import PluginStore from './plugins/PluginStore';
 import DocumentService from './DocumentService';
-import { RouteListener } from "./RouteListener";
 import { Theme, ThemeManager } from './theme/ThemeManager';
+import { RouteListener } from './routes/RouteListener';
 
 /**
  * The Productled class represents the core functionality of the Productled library.

@@ -5,7 +5,7 @@
         "link": "http://myblog.com/new_feature_intro",
 
         "trigger": {
-            "url": "/page/subpage",
+            "url": "/page/subpage*",
             "selector": ".spot-me",
         
             "frequency": "always",

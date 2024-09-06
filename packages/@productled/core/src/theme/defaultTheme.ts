@@ -1,4 +1,4 @@
-import { Theme } from './theme/ThemeManager';
+import { Theme } from './ThemeManager';
 
 export const defaultTheme: Theme = {
   primaryColor: '#3498db',

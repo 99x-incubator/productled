@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/page" element={<Page />}>
-            <Route path="subpage" element={<SubPage />} />
+            <Route path="subpage/*" element={<SubPage />} />
           </Route>
         </Routes>
       </div>
