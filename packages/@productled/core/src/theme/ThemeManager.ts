@@ -20,7 +20,6 @@ export interface Theme {
 
 export class ThemeManager {
 
-
     private currentTheme: Theme;
 
     constructor() {
@@ -32,17 +31,13 @@ export class ThemeManager {
         return this.currentTheme;
     }
   
-    // Fetch theme values from CSS variables, fallback to default if not found
-    getCSSVariable(variable: string): string {
-      const value = getComputedStyle(document.documentElement).getPropertyValue(`--${variable}`).trim();
-      return value || this.currentTheme[variable];
-    }
   
     // Apply the theme, picking from CSS variables or default values
     applyTheme(): void {
       Object.keys(defaultTheme).forEach((key) => {
-        const themeValue = this.getCSSVariable(key);
-        document.documentElement.style.setProperty(`--${key}`, themeValue);
+        const value = getComputedStyle(document.documentElement).getPropertyValue(`--${key}`).trim();
+        this.currentTheme[key] = value || defaultTheme[key];
+        document.documentElement.style.setProperty(`--${key}`, this.currentTheme[key]);
       });
     }
   

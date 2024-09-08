@@ -10,8 +10,8 @@ class TooltipPlugin implements Plugin {
     create(element: HTMLElement, hook: Hook, theme: Theme): void {
         const conf: TooltipConf = hook.config;
         if (element) {
-            const spotlight = new Tooltip(element, theme);
-            spotlight.create(conf);
+            const tooltip = new Tooltip(element, theme);
+            tooltip.create(conf);
         }
     }
     removeAll(): void {
