@@ -10,7 +10,8 @@ const SubPage: React.FC = () => {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam, nunc id aliquet lacinia, nisl justo lacinia nunc, id lacinia lectus nisl in nunc. Sed auctor, nunc id aliquet lacinia, nisl justo lacinia nunc, id lacinia lectus nisl in nunc.</p>
           <p>Donec auctor, nunc id aliquet lacinia, nisl justo lacinia nunc, id lacinia lectus nisl in nunc. Sed auctor, nunc id aliquet lacinia, nisl justo lacinia nunc, id lacinia lectus nisl in nunc.</p>
         </div>
-        <button className='btn spot-me'>Click Me</button>
+        <button className='btn spot-me' style={{ marginRight: '20px' }}>Spot Me</button>
+        <button className='btn tooltip-me'>Tooltip Me</button>
       </div>
     );
 }

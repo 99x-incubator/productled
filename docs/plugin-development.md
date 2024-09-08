@@ -12,7 +12,22 @@ Plugins are the building blocks of ProductLed. They are responsible for creating
 
 To get started, create a new folder in packages/@productled folder with the name of the plugin.
 
-Now create a file called `package.json` with the following content:
+in the solution root's package.json add an new entry to the workspaces array with the path to the new plugin folder.
+
+```json
+{
+    ...
+  "workspaces": [
+    "packages/@productled/core",
+    "packages/@productled/spotlights",
+    "packages/samples/react-sample",
+    <add new plugin path here>
+  ],
+    ...
+}
+```
+
+Now in the new plugin folder, create a file called `package.json` with the following content:
 
 ```json
 {
@@ -37,7 +52,7 @@ Now create a file called `package.json` with the following content:
 }
 ```
 
-Create a `tsconfig.json` file with the following content:
+In the new plugin folder, create a `tsconfig.json` file with the following content:
 
 ```json
 {
@@ -61,7 +76,7 @@ Create a `tsconfig.json` file with the following content:
 
 ### Create the Source Files
 
-Create a `src` folder and add an `index.ts` and `pluginClass.ts` file with the following content:
+In the new plugin folder, create a `src` folder and add an `index.ts` and `pluginClass.ts` file with the following content:
 
 `index.ts`
 
@@ -108,9 +123,9 @@ create(element: HTMLElement, conf: any, theme: Theme): void {
 
 The `create` method takes three parameters: `element`, `conf`, and `theme`. Here's what each parameter represents:
 
-- **`element`** is of type `HTMLElement`. It represents the HTML element on which the plugin will create the effect. 
+- **`element`** is of type `HTMLElement`. It represents the HTML element on which the plugin will create the effect.
 - **`conf`** is of type `any`. It represents the configuration object that contains properties specified in the `productled-config.json` file. These properties will be used to customize the effect created by the plugin.
-- **`theme`** is of type `Theme`. It represents the theme object that will be used to style the effect created by the plugin. 
+- **`theme`** is of type `Theme`. It represents the theme object that will be used to style the effect created by the plugin.
 
 In summary, the `create` method is responsible for creating an effect on a specified HTML element. It uses the provided configuration and theme to customize the spotlight's appearance and behavior.
 

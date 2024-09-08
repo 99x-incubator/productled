@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SpotlightPlugin } from '@productled/spotlight';
+
 import productledConf from './productled-config.json';
 import { Productled } from '@productled/core';
+import { SpotlightPlugin } from '@productled/spotlight';
+import { ToolTipPlugin } from '@productled/tooltip';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +18,7 @@ const productled = Productled.getInstance();
 // load the configuration
 productled.loadConfig(productledConf);
 // register the plugins
-productled.registerPlugin(new SpotlightPlugin());
+productled.registerPlugins(new SpotlightPlugin(), new ToolTipPlugin());
 
 root.render(
   <React.StrictMode>

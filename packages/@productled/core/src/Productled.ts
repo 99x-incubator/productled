@@ -83,13 +83,15 @@ class Productled {
    * @param {Plugin} plugin - The plugin to register
    * @returns {void}
    */
-  public registerPlugin(plugin: Plugin) {
-    const pluginName = plugin.Name;
-    // Add the plugin to the plugin store
-    this.pluginStore.addPlugin(plugin);
-    // Get the hooks for the plugin and add them to the hook store
-    const hooks = this.configStore.getHooks(pluginName);
-    this.hookStore.addHooks(hooks, pluginName);
+  public registerPlugins(...plugins: Plugin[]) {
+    plugins.forEach((plugin) => {
+      const pluginName = plugin.Name;
+      // Add the plugin to the plugin store
+      this.pluginStore.addPlugin(plugin);
+      // Get the hooks for the plugin and add them to the hook store
+      const hooks = this.configStore.getHooks(pluginName);
+      this.hookStore.addHooks(hooks, pluginName);
+    });
   }
 
 }

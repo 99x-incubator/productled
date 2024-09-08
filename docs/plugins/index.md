@@ -21,15 +21,16 @@ npm install @productled/spotlights
 Register the plugin with Productled Core at application start. e.g., in file: index.tsx
 
 ``` typescript
-productled.registerPlugin(new <PluginClass>());
+productled.registerPlugins(...plugins: Plugin[]);
 ```
 
 e.g.,
 
 ``` typescript
-productled.registerPlugin(new SpotlightPlugin());
+productled.registerPlugins(new SpotlightPlugin());
 ```
 
 ## Available Plugins
 
-- [Spotlights Plugin documentation](spotlights)
+- [Spotlight Plugin documentation](spotlight)
+- [Tooltip Plugin documentation](tooltip)

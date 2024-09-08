@@ -21,6 +21,28 @@
                     "top": "10"
                 }
             }
+        },
+        {
+            "plugin": "tooltip",
+            "trigger": {
+                "url": "/page/subpage*",
+                "selector": ".tooltip-me",
+            
+                "frequency": "always",
+                "schedule": {
+                    "start": { "year": "2024","month": "04", "date": "01", "time": "09:00" },
+                    "end": { "year": "2024", "month": "12", "date": "01", "time": "09:00" }
+                }
+            },
+            "config": {
+                "title": "New Click Me Feature",
+                "description": "You can now send emails directly from here",
+                "link": "http://myblog.com/new_feature_intro",
+                "positioning": {
+                    "left": "60",
+                    "top": "10"
+                }
+            }
         }
     ]
 }
