@@ -43,11 +43,11 @@ File: src/productled-config.json
 
 ```json
 {
-    "spotlights": []
+    "hooks": []
 }
 ```
 
-In this configuration file, you'll specify the settings and options for the plugins you're using. For now, we've included an empty array for spotlights, but you'll populate this with your spotlight definitions later.
+In this configuration file, you'll specify the settings and options for the plugins you're using. For now, we've included an empty array, but you'll populate this with your plugin definitions later.
 
 ## Initialize at Application Start
 
@@ -67,7 +67,7 @@ const productled = Productled.getInstance();
 productled.loadConfig(productledConf);
 
 // Register the plugins
-productled.registerPlugin(new SpotlightPlugin());
+productled.registerPlugins(new SpotlightPlugin(), new ToolTipPlugin());
 ```
 
 In this example, we're initializing the Productled instance, loading the configuration from productled-config.json, and registering the SpotlightPlugin plugin. You can register additional plugins similarly.

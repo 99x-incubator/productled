@@ -32,7 +32,7 @@ const productled = Productled.getInstance();
 productled.loadConfig(productledConf);
 
 // Register the plugins
-productled.registerPlugin(new SpotlightPlugin());
+productled.registerPlugins(new SpotlightPlugin());
 ```
 
 ## Configuring Spotlights

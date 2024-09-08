@@ -31,7 +31,7 @@ const productled = Productled.getInstance();
 productled.loadConfig(productledConf);
 
 // Register the plugin
-productled.registerPlugin(new TooltipPlugin());
+productled.registerPlugins(new TooltipPlugin());
 ```
 
 ## Configuring Tooltips
