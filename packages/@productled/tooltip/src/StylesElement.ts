@@ -32,7 +32,7 @@ class StylesElement {
       content: '';
       position: absolute;
       bottom: 100%; /* Place the arrow at the top edge */
-      left: 10%;
+      left: 10px;
       transform: translateX(-50%);
       border-width: 8px;
       border-style: solid;

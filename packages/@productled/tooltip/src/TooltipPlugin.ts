@@ -15,7 +15,7 @@ class TooltipPlugin implements Plugin {
         }
     }
     removeAll(): void {
-        const elements = document.querySelectorAll(Tooltip.SELECTOR);
+        const elements = document.querySelectorAll('.' + Tooltip.SELECTOR);
         elements.forEach(element => {
             element.remove();
         });

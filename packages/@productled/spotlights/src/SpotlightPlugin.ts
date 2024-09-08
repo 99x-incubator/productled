@@ -15,7 +15,7 @@ class SpotlightPlugin implements Plugin {
         }
     }
     removeAll(): void {
-        const spotlights = document.querySelectorAll(Spotlight.SELECTOR);
+        const spotlights = document.querySelectorAll('.' + Spotlight.SELECTOR);
         spotlights.forEach(spotlight => {
             spotlight.remove();
         });

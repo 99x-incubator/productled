@@ -13,9 +13,9 @@
                 }
             },
             "config": {
-                "title": "New Click Me Feature",
-                "description": "You can now send emails directly from here",
-                "link": "http://myblog.com/new_feature_intro",
+                "title": "New Feature Spotlight",
+                "description": "You can now do the impossible with this new feature",
+                "link": "https://99x-incubator.github.io/productled/plugins/spotlight.html",
                 "positioning": {
                     "left": "60",
                     "top": "10"
@@ -35,9 +35,9 @@
                 }
             },
             "config": {
-                "title": "New Click Me Feature",
-                "description": "You can now send emails directly from here",
-                "link": "http://myblog.com/new_feature_intro",
+                "title": "I'm a Tooltip Title",
+                "description": "This tooltip is here to help you understand the feature",
+                "link": "https://99x-incubator.github.io/productled/plugins/tooltip.html",
                 "positioning": {
                     "left": "60",
                     "top": "10"

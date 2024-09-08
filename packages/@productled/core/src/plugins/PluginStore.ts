@@ -18,6 +18,13 @@ class PluginStore {
         return this.definitionDictionary[pluginName];
     }
 
+    public clearPluginElements() {
+        // iterate over all the plugins and remove all the elements
+        Object.keys(this.definitionDictionary).forEach(key => {
+            this.definitionDictionary[key].removeAll();
+        });
+    }
+
 }
 
 export default PluginStore;

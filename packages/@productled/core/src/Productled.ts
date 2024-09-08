@@ -71,8 +71,12 @@ class Productled {
    * @returns {Promise<void>}
    */
   private routeChanged(url: string) {
-    const hooks = this.hookStore.getHooks(url);
+    // clear all the previously created elements
+    this.pluginStore.clearPluginElements();
 
+    // Get the hooks for the current route
+    const hooks = this.hookStore.getHooks(url);
+    // Execute the hooks
     const hookExecuter = new HookExecuter(this.pluginStore, this.documentService, this.themeManager.Theme);
     hookExecuter.executeHooks(hooks);
   }

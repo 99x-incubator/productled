@@ -1,13 +1,14 @@
 import { Theme } from '@productled/core';
 import { StylesElement } from './StylesElement';
+import { Tooltip } from '@productled/tooltip';
 export interface Positioning {
   left: string;
   top: string;
 }
 export interface SpotlightConf {
-  title: String;
-  description: String;
-  link: String;
+  title: string;
+  description: string;
+  link: string;
   positioning: Positioning;
 }
 export class Spotlight {
@@ -22,15 +23,15 @@ export class Spotlight {
         this.theme = theme;
     }
 
-    create(spotlightConf: SpotlightConf): void {
+    create(conf: SpotlightConf): void {
         // Position the spotlight relative to the target element
         (this.targetElement as HTMLElement).style.position = 'relative';
 
         const container = document.createElement('div');
         container.classList.add(Spotlight.SELECTOR);
         container.style.position = 'absolute';
-        container.style.left = `${spotlightConf.positioning.left}px`;
-        container.style.top = `${spotlightConf.positioning.top}px`;
+        container.style.left = `${conf.positioning.left}px`;
+        container.style.top = `${conf.positioning.top}px`;
 
         const styles = new StylesElement(this.theme);
         container.appendChild(styles.Element);
@@ -39,5 +40,12 @@ export class Spotlight {
         const spotlight = document.createElement('span');
         spotlight.classList.add('beacon');
         container.appendChild(spotlight);
+
+        const tooltip = new Tooltip(spotlight, this.theme);
+        tooltip.create({
+            title: conf.title,
+            description: conf.description,
+            link: conf.link,
+        });
     }
 }
