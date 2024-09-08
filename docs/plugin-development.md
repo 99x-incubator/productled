@@ -26,7 +26,7 @@ Now in the new plugin folder, create a file called `package.json` with the follo
 
 ```json
 {
-    "name": "@productled/tooltips",
+    "name": "@productled/<plugin-name>",
     "version": "1.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -98,10 +98,7 @@ export class PluginClass implements Plugin {
     }
 
     removeAll(): void {
-        const spotlights = document.querySelectorAll('.productled-' + this.key);
-        spotlights.forEach(spotlight => {
-            spotlight.remove();
-        });
+       // Remove all plugin instances from DOM
     }
 }
 ```
