@@ -4,7 +4,7 @@ parent: Plugins
 nav_order: 2
 ---
 
-# Spotlights Plugin Documentation
+# Spotlights Plugin
 
 The Spotlights plugin is a powerful tool that allows you to create in-app spotlights to guide users through new features, highlight important UI elements. This guide will walk you through the installation process and show you how to configure the Spotlights plugin within Productled.
 

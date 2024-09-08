@@ -1,10 +1,10 @@
 ---
-title: Spotlights
+title: Tooltip
 parent: Plugins
 nav_order: 2
 ---
 
-# Tooltip Plugin Documentation
+# Tooltip Plugin
 
 The Tooltip Plugin provides a way to display helpful tooltips to users when they hover over specific elements in your application. This guide covers the installation and configuration steps to get the Tooltip plugin working with Productled.
 

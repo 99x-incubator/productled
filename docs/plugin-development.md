@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Plugin Development
 layout: home
 nav_order: 5
 ---
@@ -16,14 +16,9 @@ in the solution root's package.json add an new entry to the workspaces array wit
 
 ```json
 {
-    ...
   "workspaces": [
-    "packages/@productled/core",
-    "packages/@productled/spotlights",
-    "packages/samples/react-sample",
-    <add new plugin path here>
+    "packages/@productled/new-plugin-path
   ],
-    ...
 }
 ```
 
@@ -65,8 +60,8 @@ In the new plugin folder, create a `tsconfig.json` file with the following conte
       "target": "ESNext",
       "moduleResolution": "node",
       "esModuleInterop": true,
-      "declaration": true, // set to true on prod
-      "sourceMap": true, // set to true on dev
+      "declaration": true,
+      "sourceMap": true, 
       "strict": true,
       "types": ["node"]
     },
