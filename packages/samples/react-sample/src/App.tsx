@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Page from './Page'; // Import the existing page component
 import HomePage from './HomePage'; // Import another page component (create this if it doesn't exist)

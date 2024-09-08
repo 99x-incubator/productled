@@ -1,4 +1,4 @@
-import Hook from './Hook';
+import { Hook } from './Hook';
 import RouteMapper from "../routes/RouteMapper";
 
 type route = string;
@@ -16,7 +16,7 @@ class HookStore {
                 this.hookMap.set(key, hooks);
             }
 
-            hook.pluginName = pluginName;
+            hook.plugin = pluginName;
             hooks.push(hook);
         }
     }

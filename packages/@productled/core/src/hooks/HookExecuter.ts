@@ -1,4 +1,4 @@
-import Hook from "./Hook";
+import { Hook } from "./Hook";
 import PluginStore from "../plugins/PluginStore";
 import DocumentService from "../DocumentService";
 import { Theme } from "../theme/ThemeManager";
@@ -23,9 +23,9 @@ class HookExecuter {
         console.warn(`Element with selector ${selector} not found`);
         return;
       }
-      const plugin = this.pluginStore.getPlugin(hook.pluginName);
+      const plugin = this.pluginStore.getPlugin(hook.plugin);
       if (!plugin) {
-        console.warn(`Plugin with name ${hook.pluginName} not found`);
+        console.warn(`Plugin with name ${hook.plugin} not found`);
         return;
       }
       plugin.create(element, hook, this.theme)

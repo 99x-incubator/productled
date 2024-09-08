@@ -28,9 +28,9 @@ class Productled {
     this.hookStore = new HookStore();
     this.pluginStore = new PluginStore();
     this.documentService = new DocumentService();
-    this.configStore = new ConfigStore();
     this.routeListener = new RouteListener();
     this.themeManager = new ThemeManager();
+    this.configStore = new ConfigStore();
     this.routeListener.addListener(this.routeChanged.bind(this));
   }
 
@@ -61,7 +61,7 @@ class Productled {
    * This method registers the hook configuration with the Productled instance.
    */
   public loadConfig(config: any) {
-    this.configStore.Configuration = config;
+    this.configStore.load(config);
   }
 
   /**

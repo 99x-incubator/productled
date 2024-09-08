@@ -1,2 +1,1 @@
-import SpotlightsPlugin from './SpotlightsPlugin';
-export {SpotlightsPlugin};
+export { default as SpotlightPlugin } from './SpotlightPlugin';
