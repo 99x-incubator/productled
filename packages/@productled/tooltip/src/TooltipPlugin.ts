@@ -7,6 +7,14 @@ class TooltipPlugin implements Plugin {
     get Name(): string {
         return this.key;
     }
+
+    initialize(hooks: Hook[], theme: Theme): void {
+        for (const hook of hooks) {
+            const target = document.querySelector(hook.trigger.selector) as HTMLElement;
+            this.create(target, hook, theme);
+        }
+    }
+
     create(element: HTMLElement, hook: Hook, theme: Theme): void {
         const conf: TooltipConf = hook.config;
         if (element) {
