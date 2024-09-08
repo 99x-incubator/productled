@@ -68,7 +68,7 @@ export class Tooltip {
     const link = document.createElement('a');
     link.href = conf.link;
     link.innerText = 'Learn more';
-    link.style.color = this.theme.secondaryColor;
+    link.className = 'productled-tooltip-hover-link'; 
     link.target = '_blank';
     this.tooltip.appendChild(link);
 

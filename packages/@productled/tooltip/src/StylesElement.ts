@@ -38,6 +38,14 @@ class StylesElement {
       border-style: solid;
       border-color: transparent transparent var(--primaryColor) transparent;
     }
+
+    .productled-tooltip-hover-link {
+      color: var(--secondaryColor); /* Use CSS variable or define the color directly */
+    }
+
+    .productled-tooltip-hover-link:hover {
+      color: var(--primaryColor); /* Use CSS variable or define the hover color directly */
+    }
 `;
   }
 }
