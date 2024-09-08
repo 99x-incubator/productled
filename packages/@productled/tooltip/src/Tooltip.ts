@@ -1,132 +1,111 @@
-import { Theme } from '@productled/core';
-import { StylesElement } from './StylesElement';
+import { BaseComponent, customElement, Theme } from "@productled/core";
+import { TooltipConfig } from "./TooltipPlugin";
 
-// Interface for positioning of the tooltip
-export interface Positioning {
-  left: string;
-  top: string;
+@customElement("productled-tooltip")
+export class Tooltip extends BaseComponent {
+    constructor(
+        protected readonly targetElement: HTMLElement,
+        protected readonly config: TooltipConfig,
+        protected readonly theme: Theme) {
+        super(targetElement, config, theme);
+    }
+
+    show(target: HTMLElement) {
+        const rect = target.getBoundingClientRect();
+        const tooltipRect = this.getBoundingClientRect();
+
+        let left, top;
+
+        switch (this.config.position) {
+            case "top":
+                left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+                top = rect.top - tooltipRect.height - 5;
+                break;
+            case "left":
+                left = rect.left - tooltipRect.width - 5;
+                top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
+                break;
+            case "right":
+                left = rect.right + 5;
+                top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
+                break;
+            default: // bottom
+                left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+                top = rect.bottom + 5;
+        }
+
+        // Adjust if tooltip would overflow viewport
+        left = Math.max(0, Math.min(left, window.innerWidth - tooltipRect.width));
+        top = Math.max(0, Math.min(top, window.innerHeight - tooltipRect.height));
+
+        // this.style.left = `${left}px`;
+        // this.style.top = `${top}px`;
+        this.style.display = "block";
+    }
+
+    hide(): void {
+        this.style.display = "none";
+    }
+
+    protected render(): void {
+        const pre = this.shadowRoot.querySelector(".tooltip-content");
+        pre!.textContent = this.config.text;
+
+        // TODO: Add aria-describedBy on the target element 
+        // with a unique id for the tooltip
+        const tooltipId = "tooltip-1";
+        this.shadowRoot.querySelector(".tooltip")!.id = tooltipId;
+        this.targetElement.setAttribute("aria-describedBy", tooltipId);
+    }
+
+    protected getTemplate(): HTMLTemplateElement {
+        const template = document.createElement("template");
+
+        const tooltip = document.createElement("div");
+        tooltip.className = "tooltip";
+        tooltip.setAttribute("role", "tooltip");
+
+        const content = document.createElement("pre");
+        content.className = "tooltip-content";
+
+        tooltip.appendChild(content);
+        template.content.appendChild(tooltip);
+
+        const style = document.createElement("style");
+        style.textContent = `
+            :host {
+                position: relative;
+                display: inline-block;
+            }
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  white-space: nowrap;
+  z-index: 1;
+  transition: opacity 0.3s, visibility 0.3s;
 }
 
-// Interface for tooltip configuration
-export interface TooltipConf {
-  title: string;
-  description: string;
-  link: string;
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
 }
+      `;
+        template.content.appendChild(style);
 
-// Tooltip class
-export class Tooltip {
-  private element: Element;
-  private theme: Theme;
-  private tooltip: HTMLElement | null = null;
-
-  // Constants
-  public static SELECTOR = 'productled-tooltip';
-  public static PLUGIN_NAME = 'tooltip';
-
-  constructor(targetElement: Element, theme: Theme) {
-    this.element = targetElement;
-    this.theme = theme;
-  }
-
-  /**
-   * Creates the tooltip based on the provided configuration.
-   * @param conf - The tooltip configuration.
-   */
-  create(conf: TooltipConf): void {
-    // Create tooltip container
-    this.tooltip = document.createElement('div');
-    this.tooltip.classList.add(Tooltip.SELECTOR);
-    this.tooltip.style.position = 'absolute';
-    this.tooltip.style.backgroundColor = this.theme.backgroundColor;
-    this.tooltip.style.color = this.theme.textColor;
-    this.tooltip.style.border = `1px solid ${this.theme.primaryColor}`;
-    this.tooltip.style.padding = '10px';
-    this.tooltip.style.fontSize = this.theme.fontSize;
-    this.tooltip.style.zIndex = '1000';
-    this.tooltip.style.display = 'none'; // Initially hidden
-
-    // Create styles element
-    const styles = new StylesElement(this.theme);
-    this.tooltip.appendChild(styles.Element);
-
-    // Add class for the tooltip
-    this.tooltip.classList.add(Tooltip.SELECTOR);
-
-    // Create title
-    const title = document.createElement('h3');
-    title.innerText = conf.title;
-    title.style.color = this.theme.primaryColor;
-    this.tooltip.appendChild(title);
-
-    // Create description
-    const description = document.createElement('p');
-    description.innerText = conf.description;
-    this.tooltip.appendChild(description);
-
-    // Create link
-    const link = document.createElement('a');
-    link.href = conf.link;
-    link.innerText = 'Learn more';
-    link.className = 'productled-tooltip-hover-link'; 
-    link.target = '_blank';
-    this.tooltip.appendChild(link);
-
-    // Append the tooltip to the body
-    document.body.appendChild(this.tooltip);
-
-    // Show tooltip on hover of target element
-    this.element.addEventListener('mouseenter', () => {
-      this.positionTooltip();
-      this.tooltip!.style.display = 'block';
-    });
-
-    // Hide tooltip when leaving both the element and the tooltip
-    this.element.addEventListener('mouseleave', () => {
-      this.hideTooltipWithDelay(500);
-    });
-
-    // Keep tooltip visible when hovering over the tooltip
-    this.tooltip.addEventListener('mouseenter', () => {
-      this.positionTooltip();
-      this.tooltip!.style.display = 'block';
-    });
-
-    // Hide tooltip when leaving the tooltip
-    this.tooltip.addEventListener('mouseleave', () => {
-      this.hideTooltipWithDelay(500);
-    });
-  }
-
-  /**
-   * Checks if the mouse is on the target element or the tooltip.
-   * @returns True if the mouse is on the target element or the tooltip, false otherwise.
-   */
-  private isMouseOn(): boolean {
-    // Find if mouse is on this.element or this.tooltip
-    const isMouseOnElement = this.element.matches(':hover') || false;
-    const isMouseOnTooltip = this.tooltip?.matches(':hover') || false;
-    return isMouseOnElement || isMouseOnTooltip;
-  }
-
-  /**
-   * Positions the tooltip relative to the target element.
-   */
-  private positionTooltip(): void {
-    const rect = this.element.getBoundingClientRect();
-    this.tooltip!.style.left = `${rect.left + window.scrollX}px`;
-    this.tooltip!.style.top = `${rect.bottom + window.scrollY}px`;
-  }
-
-  /**
-   * Hides the tooltip after a small delay to handle fast mouse movements.
-   * @param delay - The delay in milliseconds.
-   */
-  private hideTooltipWithDelay(delay = 200): void {
-    setTimeout(() => {
-      if (this.tooltip && !this.isMouseOn()) {
-        this.tooltip.style.display = 'none';
-      }
-    }, delay);
-  }
+        return template;
+    }
 }

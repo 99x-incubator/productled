@@ -35,13 +35,8 @@
                 }
             },
             "config": {
-                "title": "I'm a Tooltip Title",
-                "description": "This tooltip is here to help you understand the feature",
-                "link": "https://99x-incubator.github.io/productled/plugins/tooltip.html",
-                "positioning": {
-                    "left": "60",
-                    "top": "10"
-                }
+                "text": "This is a tooltip text!",
+                "position": "right"
             }
         }
     ]
