@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": [
     "packages/@productled/core",
-    "packages/@productled/spotlights",
+    "packages/@productled/spotlight",
     "packages/samples/react-sample",
     "packages/@productled/tooltip"
   ],
