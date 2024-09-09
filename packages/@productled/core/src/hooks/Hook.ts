@@ -1,5 +1,5 @@
 interface HookTrigger {
-  url: string;
+  url: string | string[];
   selector: string;
   frequency: 'always' | 'once';  // You can add more frequency types if needed
   schedule?: Schedule;

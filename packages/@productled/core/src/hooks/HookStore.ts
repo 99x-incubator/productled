@@ -9,15 +9,16 @@ class HookStore {
 
     public addHooks(hooks: Hook[], pluginName: string) {
         for (const hook of hooks) {
-            const key = this.routeMapper.addRoute(hook.trigger.url);
-            let hooks = this.hookMap.get(key);
-            if (!hooks) {
-                hooks = [];
+            hook.plugin = pluginName;
+            const urls: string[] = Array.isArray(hook.trigger.url) ? hook.trigger.url : [hook.trigger.url];
+
+            // Register the hook for each URL provided in the trigger
+            for (const url of urls) {
+                const key = this.routeMapper.addRoute(url);
+                const hooks = this.hookMap.get(key) ?? [];
+                hooks.push(hook);
                 this.hookMap.set(key, hooks);
             }
-
-            hook.plugin = pluginName;
-            hooks.push(hook);
         }
     }
 
