@@ -58,87 +58,127 @@ describe('RouteMapper', () => {
         })
 
         it('should retrieve a static route', () => {
-            expect(routeMapper.matchRoute('/home')).toBe(routeKeys['/home']);
+            expect(routeMapper.matchRoutes('/home')).toEqual([routeKeys['/home']]);
         });
 
         it('should retrieve a dynamic route with param', () => {
-            expect(routeMapper.matchRoute('/user/123')).toBe(routeKeys['/user/:id']);
+            expect(routeMapper.matchRoutes('/user/123')).toEqual([routeKeys['/user/:id']]);
         });
 
         it('should retrieve a dynamic route with wildcard', () => {
-            expect(routeMapper.matchRoute('/files/any/path')).toBe(routeKeys['/files/*']);
+            expect(routeMapper.matchRoutes('/files/any/path')).toEqual([routeKeys['/files/*']]);
         });
 
         it('should retrieve a dynamic route with both param and wildcard', () => {
-            expect(routeMapper.matchRoute('/user/123/files/any/path')).toBe(routeKeys['/user/:id/files/*']);
+            expect(routeMapper.matchRoutes('/user/123/files/any/path')).toEqual([routeKeys['/user/:id/files/*']]);
         });
 
+        it('should return multiple keys for routes that match multiple patterns', () => {
+            const paramRouteKey = routeMapper.addRoute('/user/:id');
+            const wildcardRouteKey = routeMapper.addRoute('/user/*');
+            const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
+
+            expect(routeMapper.matchRoutes('/user/123')).toEqual([paramRouteKey, wildcardRouteKey]);
+            expect(routeMapper.matchRoutes('/user/123/extra')).toEqual([paramWildcardRouteKey, wildcardRouteKey]);
+        });
+
+
         it('should return null for unmatched routes', () => {
-            expect(routeMapper.matchRoute('/about')).toBeNull();
-            expect(routeMapper.matchRoute('/home/extra')).toBeNull();
-            expect(routeMapper.matchRoute('/user')).toBeNull();
-            expect(routeMapper.matchRoute('/user/')).toBeNull();
-            expect(routeMapper.matchRoute('/user/123/extra')).toBeNull();
-            expect(routeMapper.matchRoute('/files')).toBeNull();
-            expect(routeMapper.matchRoute('/user/123/files')).toBeNull();
+            expect(routeMapper.matchRoutes('/about')).toEqual([]);
+            expect(routeMapper.matchRoutes('/home/extra')).toEqual([]);
+            expect(routeMapper.matchRoutes('/user')).toEqual([]);
+            expect(routeMapper.matchRoutes('/user/')).toEqual([]);
+            expect(routeMapper.matchRoutes('/user/123/extra')).toEqual([]);
+            expect(routeMapper.matchRoutes('/files')).toEqual([]);
+            expect(routeMapper.matchRoutes('/user/123/files')).toEqual([]);
         });
     })
 
     describe("matchRoute (priority matching)", () => {
         it("should match static route before param route", () => {
-            const staticRouteKey = routeMapper.addRoute('/home');
-            routeMapper.addRoute('/user/:id');
+            const staticRouteKey = routeMapper.addRoute('/user/101');
+            const paramRouteKey = routeMapper.addRoute('/user/:id');
 
-            expect(routeMapper.matchRoute('/home')).toBe(staticRouteKey);
+            expect(routeMapper.matchRoutes('/user/101')).toEqual([staticRouteKey, paramRouteKey]);
         });
 
         it('should match static route before param route (reversed order)', () => {
-            routeMapper.addRoute('/user/:id');
-            const staticRouteKey = routeMapper.addRoute('/home');
+            const paramRouteKey = routeMapper.addRoute('/user/:id');
+            const staticRouteKey = routeMapper.addRoute('/user/101');
 
-            expect(routeMapper.matchRoute('/home')).toBe(staticRouteKey);
+            expect(routeMapper.matchRoutes('/user/101')).toEqual([staticRouteKey, paramRouteKey]);
         });
 
         it("should match param route before wildcard route", () => {
             const paramRouteKey = routeMapper.addRoute('/user/:id');
-            routeMapper.addRoute('/user/*');
+            const wildcardRouteKey = routeMapper.addRoute('/user/*');
 
-            expect(routeMapper.matchRoute('/user/123')).toBe(paramRouteKey);
+            expect(routeMapper.matchRoutes('/user/123')).toEqual([paramRouteKey, wildcardRouteKey]);
         });
 
         it("should match param route before wildcard route (reversed order)", () => {
-            routeMapper.addRoute('/user/*');
+            const wildcardRouteKey = routeMapper.addRoute('/user/*');
             const paramRouteKey = routeMapper.addRoute('/user/:id');
 
-            expect(routeMapper.matchRoute('/user/123')).toBe(paramRouteKey);
+            expect(routeMapper.matchRoutes('/user/123')).toEqual([paramRouteKey, wildcardRouteKey]);
         });
 
         it("should match param route before param + wildcard route", () => {
             const paramRouteKey = routeMapper.addRoute('/user/:id/:action');
-            routeMapper.addRoute('/user/:id/*');
+            const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
 
-            expect(routeMapper.matchRoute('/user/123/stash')).toBe(paramRouteKey);
+            expect(routeMapper.matchRoutes('/user/123/stash')).toEqual([paramRouteKey, paramWildcardRouteKey]);
         });
 
         it("should match param route before param + wildcard route (reversed order)", () => {
-            routeMapper.addRoute('/user/:id/*');
+            const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
             const paramRouteKey = routeMapper.addRoute('/user/:id/:action');
 
-            expect(routeMapper.matchRoute('/user/123/stash')).toBe(paramRouteKey);
+            expect(routeMapper.matchRoutes('/user/123/stash')).toEqual([paramRouteKey, paramWildcardRouteKey]);
         });
 
         it("should match param + wildcard route before wildcard route", () => {
             const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
-            routeMapper.addRoute('/user/*');
+            const wildcardRouteKey = routeMapper.addRoute('/user/*');
 
-            expect(routeMapper.matchRoute('/user/123/extra')).toBe(paramWildcardRouteKey);
+            expect(routeMapper.matchRoutes('/user/123/extra')).toEqual([paramWildcardRouteKey, wildcardRouteKey]);
         });
 
         it("should match param + wildcard route before wildcard route (reversed order)", () => {
-            routeMapper.addRoute('/user/*');
+            const wildcardRouteKey = routeMapper.addRoute('/user/*');
             const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
 
-            expect(routeMapper.matchRoute('/user/123/extra')).toBe(paramWildcardRouteKey);
+            expect(routeMapper.matchRoutes('/user/123/extra')).toEqual([paramWildcardRouteKey, wildcardRouteKey]);
+        });
+
+        it("should match static route before param + wildcard route", () => {
+            const staticRouteKey = routeMapper.addRoute('/user/123/files');
+            const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
+
+            expect(routeMapper.matchRoutes('/user/123/files')).toEqual([staticRouteKey, paramWildcardRouteKey]);
+        });
+
+        it("should match static route before param + wildcard route (reversed order)", () => {
+            const paramWildcardRouteKey = routeMapper.addRoute('/user/:id/*');
+            const staticRouteKey = routeMapper.addRoute('/user/123/files');
+
+            expect(routeMapper.matchRoutes('/user/123/files')).toEqual([staticRouteKey, paramWildcardRouteKey]);
+        });
+
+        it("should match multiple param routes", () => {
+            const paramRouteKey1 = routeMapper.addRoute('/user/:id');
+            const paramRouteKey2 = routeMapper.addRoute('/user/:id/:action');
+
+            expect(routeMapper.matchRoutes('/user/123')).toEqual([paramRouteKey1]);
+            expect(routeMapper.matchRoutes('/user/123/edit')).toEqual([paramRouteKey2]);
+        });
+
+        it("should match multiple wildcard routes", () => {
+            const wildcardRouteKey1 = routeMapper.addRoute('/files/*');
+            const wildcardRouteKey2 = routeMapper.addRoute('/files/any/*');
+
+            expect(routeMapper.matchRoutes('/files/any')).toEqual([wildcardRouteKey1]);
+            expect(routeMapper.matchRoutes('/files/any/path/details')).toEqual([wildcardRouteKey1, wildcardRouteKey2]);
         });
     });
 });

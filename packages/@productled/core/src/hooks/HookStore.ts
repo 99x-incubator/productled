@@ -22,12 +22,18 @@ class HookStore {
     }
 
     public getHooks(url: route): Hook[] {
-        const key = this.routeMapper.matchRoute(url);
-        if (!key) {
-            return [];
+        const keys = this.routeMapper.matchRoutes(url);
+
+        const matchedHooks: Hook[] = [];
+        for (const key of keys) {
+            const hooks = this.hookMap.get(key);
+            if (hooks) {
+                matchedHooks.push(...hooks);
+            }
         }
 
-        return this.hookMap.get(key) || [];
+        // Remove duplicate hooks
+        return Array.from(new Set(matchedHooks));
     }
 
 }
