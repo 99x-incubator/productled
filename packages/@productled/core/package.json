@@ -6,7 +6,8 @@
     "scripts": {
         "build": "tsc",
         "test": "jest",
-        "clean": "rm -rf dist"
+        "clean": "rm -rf dist",
+        "watch": "tsc -w"
     },
     "devDependencies": {
         "@types/jest": "^29.5.12",

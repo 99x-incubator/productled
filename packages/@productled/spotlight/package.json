@@ -6,7 +6,8 @@
     "scripts": {
         "build": "tsc",
         "test": "jest",
-        "clean": "rm -rf dist"
+        "clean": "rm -rf dist",
+        "watch": "tsc -w"
     },
     "dependencies": {
         "@productled/tooltip": "^1.0.0"
