@@ -90,18 +90,20 @@ class RouteMapper {
         this.dynamicRoutes = Object.fromEntries(sortedEntries);
     }
 
-    public matchRoute(route: string): Symbol | null {
+    public matchRoutes(route: string): Symbol[] {
+        const matched: Symbol[] = [];
+
         if (this.staticRoutes[route]) {
-            return this.staticRoutes[route];
+            matched.push(this.staticRoutes[route]);
         }
 
         for (const dynamicRoute of Object.values(this.dynamicRoutes)) {
             if (dynamicRoute.regexp.test(route)) {
-                return dynamicRoute.key;
+                matched.push(dynamicRoute.key);
             }
         }
 
-        return null;
+        return matched;
     }
 }
 
