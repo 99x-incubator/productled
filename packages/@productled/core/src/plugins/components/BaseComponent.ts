@@ -17,6 +17,7 @@ export abstract class BaseComponent extends HTMLElement {
             this.getTemplate.bind(this));
 
         this.shadowRoot = this.attachShadow({ mode: 'open' })
+        this.shadowRoot.appendChild(this.getStyleElement());
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
@@ -25,5 +26,6 @@ export abstract class BaseComponent extends HTMLElement {
     }
 
     protected abstract getTemplate(): HTMLTemplateElement;
+    protected abstract getStyleElement(): HTMLStyleElement;
     protected abstract render(): void;
 }

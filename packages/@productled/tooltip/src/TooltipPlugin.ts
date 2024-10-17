@@ -68,7 +68,7 @@ class TooltipPlugin implements Plugin {
     private initializeTooltip(hook: Hook, target: HTMLElement) {
         const tooltip = this.tooltips.get(hook.trigger.selector);
         if (tooltip) {
-            tooltip.show(target);
+            tooltip.show();
         } else {
             const newTooltip = new Tooltip(target, hook.config, this.theme);
             this.tooltips.set(hook.trigger.selector, newTooltip);
@@ -106,7 +106,7 @@ class TooltipPlugin implements Plugin {
                 if (target) {
                     const hook = this.findTooltipConfig(target);
                     if (hook) {
-                        tooltip.show(target);
+                        tooltip.show();
                     }
                 }
             }
