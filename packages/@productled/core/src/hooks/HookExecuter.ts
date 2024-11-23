@@ -15,21 +15,17 @@ class HookExecuter {
   }
 
   public async executeHooks(hooks: Hook[]) {
-    for (const hook of hooks) {
+    const pluginHooks = Object.groupBy(hooks, ({ plugin }) => plugin);
 
-      const selector = hook.trigger.selector
-      const element = this.documentService.querySelector(selector) as HTMLElement | null;
-      if (!element) {
-        console.warn(`Element with selector ${selector} not found`);
-        return;
-      }
-      const plugin = this.pluginStore.getPlugin(hook.plugin);
+    for (const [pluginName, hooks] of Object.entries(pluginHooks)) {
+      const plugin = this.pluginStore.getPlugin(pluginName);
       if (!plugin) {
-        console.warn(`Plugin with name ${hook.plugin} not found`);
+        console.warn(`Plugin with name ${pluginName} not found`);
         return;
       }
-      plugin.create(element, hook, this.theme)
-    };
+
+      plugin.initialize(hooks!, this.theme);
+    }
   }
 }
 
