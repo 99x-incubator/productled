@@ -10,8 +10,6 @@
       "clean": "rm -rf dist",
       "watch": "tsc -w"
     },
-    "dependencies": {
-
-    },
+    "dependencies": {},
     "devDependencies": {}
   }

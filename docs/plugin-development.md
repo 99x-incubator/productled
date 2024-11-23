@@ -37,12 +37,10 @@ Now in the new plugin folder, create a file called `package.json` with the follo
       "clean": "rm -rf dist"
     },
     "dependencies": {
-
+        // plugin specific dependencies
     },
     "devDependencies": {
-      "@types/node": "^20.14.9",
-      "ts-node": "^10.9.2",
-      "typescript": "^4.9.5"
+        // plugin sppecific dev dependencies
     }
 }
 ```
@@ -51,27 +49,25 @@ In the new plugin folder, create a `tsconfig.json` file with the following conte
 
 ```json
 {
-    "extends": "../../../tsconfig.json",
+    "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-      "outDir": "dist",
-      "rootDir": "src",
-      "lib": ["ESNext", "DOM"],
-      "module": "ESNext",
-      "target": "ESNext",
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "declaration": true,
-      "sourceMap": true, 
-      "strict": true,
-      "types": ["node"]
+        "outDir": "dist"
     },
-    "include": ["src/**/*"]
+    "include": [
+        "src/**/*"
+    ],
+    "references": [
+        {
+            "path": "../core"
+        }
+        // add other plugin dependency references
+    ]
 }
 ```
 
 ### Create the Source Files
 
-In the new plugin folder, create a `src` folder and add an `index.ts` and `pluginClass.ts` file with the following content:
+In the new plugin folder, create a `src` folder and add an `index.ts` and `PluginClass.ts` file with the following content:
 
 `index.ts`
 
@@ -82,7 +78,7 @@ export { default as PluginClass } from './PluginClass';
 `PluginClass.ts`
 
 ```typescript
-import { Plugin } from '@productled/core';
+import type { Plugin } from '@productled/core';
 
 export class PluginClass implements Plugin {
     private key: string = "plugin-name";
@@ -91,10 +87,8 @@ export class PluginClass implements Plugin {
         return this.key;
     }
 
-    create(element: HTMLElement, conf: any, theme: Theme): void {
-        if (element) {
-            // Apply the plugin effect on the specified HTML element
-        }
+    initialize(hooks: Hook[], theme: Theme): void {
+        // Initialize plugin effects based on configruations
     }
 
     removeAll(): void {
@@ -103,23 +97,20 @@ export class PluginClass implements Plugin {
 }
 ```
 
-### The `create` Method
+### The `initialize` Method
 
 ```typescript
-create(element: HTMLElement, conf: any, theme: Theme): void {
-    if (element) {
-        // Apply the plugin effect on the specified HTML element
-    }
+initialize(hooks: Hook[], theme: Theme): void {
+    // Initialize plugin effects based on configruations
 }
 ```
 
-The `create` method takes three parameters: `element`, `conf`, and `theme`. Here's what each parameter represents:
+The `initialize` method takes two parameters: `hooks`, and `theme`. Here's what each parameter represents:
 
-- **`element`** is of type `HTMLElement`. It represents the HTML element on which the plugin will create the effect.
-- **`conf`** is of type `any`. It represents the configuration object that contains properties specified in the `productled-config.json` file. These properties will be used to customize the effect created by the plugin.
+- **`hooks`** is of type `Hook[]`. It represents the configuration objects that contains properties specified in the `productled-config.json` file. These properties will be used to customize the effect created by the plugin.
 - **`theme`** is of type `Theme`. It represents the theme object that will be used to style the effect created by the plugin.
 
-In summary, the `create` method is responsible for creating an effect on a specified HTML element. It uses the provided configuration and theme to customize the spotlight's appearance and behavior.
+In summary, the `initilaize` method is responsible for creating effects for a specific plugin on a specific route. It uses the provided configurations and theme to customize the spotlight's appearance and behavior.
 
 ### The `removeAll` Method
 

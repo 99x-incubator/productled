@@ -4,9 +4,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the root directory, you can run:
 
-### `npm run build --workspace='@productled/spotlight'`
+### `npm run build --workspaces`
+
+Then switch to the sample directory:
+
+### `cd .\packages\samples\react-sample`
+
+Start the showcase app:
+
 ### `npm start`
 
 Runs the app in the development mode.\
