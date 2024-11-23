@@ -1,4 +1,4 @@
-export { default as Productled } from './Productled';
-export { default as Plugin } from './plugins/Plugin';
-export { Hook } from './hooks/Hook';
-export { Theme } from './theme/ThemeManager';
+export type { default as Productled } from './Productled';
+export type { Plugin } from './plugins/Plugin';
+export type { Hook } from './hooks/Hook';
+export type { Theme } from './theme/ThemeManager';

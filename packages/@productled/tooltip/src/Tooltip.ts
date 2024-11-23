@@ -1,4 +1,4 @@
-import { Theme } from '@productled/core';
+import type { Theme } from '@productled/core';
 import { StylesElement } from './StylesElement';
 
 // Interface for positioning of the tooltip
@@ -16,18 +16,16 @@ export interface TooltipConf {
 
 // Tooltip class
 export class Tooltip {
-  private element: Element;
-  private theme: Theme;
   private tooltip: HTMLElement | null = null;
 
   // Constants
   public static SELECTOR = 'productled-tooltip';
   public static PLUGIN_NAME = 'tooltip';
 
-  constructor(targetElement: Element, theme: Theme) {
-    this.element = targetElement;
-    this.theme = theme;
-  }
+  constructor(
+    private readonly element: Element, 
+    private readonly theme: Theme
+  ) { }
 
   /**
    * Creates the tooltip based on the provided configuration.

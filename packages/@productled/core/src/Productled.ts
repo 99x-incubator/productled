@@ -1,10 +1,9 @@
 import HookExecuter from './hooks/HookExecuter';
 import HookStore from './hooks/HookStore';
-import Plugin from './plugins/Plugin';
+import type { Plugin } from './plugins/Plugin';
 import ConfigStore from './ConfigStore';
 import PluginStore from './plugins/PluginStore';
-import DocumentService from './DocumentService';
-import { Theme, ThemeManager } from './theme/ThemeManager';
+import { type Theme, ThemeManager } from './theme/ThemeManager';
 import { RouteListener } from './routes/RouteListener';
 
 /**
@@ -16,7 +15,6 @@ class Productled {
   protected hookStore: HookStore;
   protected configStore: ConfigStore;
   protected pluginStore: PluginStore;
-  protected documentService: DocumentService;
   protected routeListener: RouteListener;
   protected themeManager: ThemeManager;
 
@@ -27,7 +25,6 @@ class Productled {
   private constructor() {
     this.hookStore = new HookStore();
     this.pluginStore = new PluginStore();
-    this.documentService = new DocumentService();
     this.routeListener = new RouteListener();
     this.themeManager = new ThemeManager();
     this.configStore = new ConfigStore();
@@ -77,7 +74,7 @@ class Productled {
     // Get the hooks for the current route
     const hooks = this.hookStore.getHooks(url);
     // Execute the hooks
-    const hookExecuter = new HookExecuter(this.pluginStore, this.documentService, this.themeManager.Theme);
+    const hookExecuter = new HookExecuter(this.pluginStore, this.themeManager.Theme);
     hookExecuter.executeHooks(hooks);
   }
 

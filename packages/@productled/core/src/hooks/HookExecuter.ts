@@ -1,18 +1,12 @@
-import { Hook } from "./Hook";
+import type { Hook } from "./Hook";
 import PluginStore from "../plugins/PluginStore";
-import DocumentService from "../DocumentService";
-import { Theme } from "../theme/ThemeManager";
+import type { Theme } from "../theme/ThemeManager";
 
 class HookExecuter {
-  private pluginStore: PluginStore;
-  private documentService: DocumentService;
-  private theme: Theme;
-
-  constructor(pluginStore: PluginStore, documentService: DocumentService, theme: Theme) {
-    this.pluginStore = pluginStore;
-    this.documentService = documentService;
-    this.theme = theme;
-  }
+  constructor(
+    private readonly pluginStore: PluginStore, 
+    private readonly theme: Theme
+  ) { }
 
   public async executeHooks(hooks: Hook[]) {
     const pluginHooks = Object.groupBy(hooks, ({ plugin }) => plugin);

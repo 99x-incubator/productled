@@ -1,4 +1,4 @@
-import { Theme } from '@productled/core';
+import type { Theme } from '@productled/core';
 import { StylesElement } from './StylesElement';
 import { Tooltip } from '@productled/tooltip';
 export interface Positioning {
@@ -12,16 +12,13 @@ export interface SpotlightConf {
   positioning: Positioning;
 }
 export class Spotlight {
-    private targetElement: Element;
-    private theme: Theme;
-
     public static SELECTOR = 'productled-spotlight';
     public static PLUGIN_NAME = 'spotlight';
 
-    constructor(targetElement: Element, theme: Theme) {
-        this.targetElement = targetElement;
-        this.theme = theme;
-    }
+    constructor(
+      private readonly targetElement: Element, 
+      private readonly theme: Theme
+    ) { }
 
     create(conf: SpotlightConf): void {
         // Position the spotlight relative to the target element

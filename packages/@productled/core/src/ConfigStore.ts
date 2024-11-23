@@ -1,4 +1,4 @@
-import { Config, Hook } from "./hooks/Hook";
+import type { Config, Hook } from "./hooks/Hook";
 
 class ConfigStore {
     private pluginDict: { [plugin: string]: Hook[] } = {};
