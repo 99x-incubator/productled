@@ -31,4 +31,4 @@ interface Schedule {
   };
 }
 
-export { HookTrigger, Schedule, Hook, Config };
+export type { HookTrigger, Schedule, Hook, Config };

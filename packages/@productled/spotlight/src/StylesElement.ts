@@ -1,6 +1,8 @@
-import { Theme } from "@productled/core";
+import type { Theme } from "@productled/core";
 
 class StylesElement {
+  // @ts-ignore
+  // TODO: Check usage
   private color: string;
 
   constructor(theme: Theme) {

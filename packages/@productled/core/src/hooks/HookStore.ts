@@ -1,4 +1,4 @@
-import { Hook } from './Hook';
+import type { Hook } from './Hook';
 import RouteMapper from "../routes/RouteMapper";
 
 type route = string;

@@ -1,35 +1,25 @@
-import { Hook } from "./Hook";
+import type { Hook } from "./Hook";
 import PluginStore from "../plugins/PluginStore";
-import DocumentService from "../DocumentService";
-import { Theme } from "../theme/ThemeManager";
+import type { Theme } from "../theme/ThemeManager";
 
 class HookExecuter {
-  private pluginStore: PluginStore;
-  private documentService: DocumentService;
-  private theme: Theme;
-
-  constructor(pluginStore: PluginStore, documentService: DocumentService, theme: Theme) {
-    this.pluginStore = pluginStore;
-    this.documentService = documentService;
-    this.theme = theme;
-  }
+  constructor(
+    private readonly pluginStore: PluginStore, 
+    private readonly theme: Theme
+  ) { }
 
   public async executeHooks(hooks: Hook[]) {
-    for (const hook of hooks) {
+    const pluginHooks = Object.groupBy(hooks, ({ plugin }) => plugin);
 
-      const selector = hook.trigger.selector
-      const element = this.documentService.querySelector(selector) as HTMLElement | null;
-      if (!element) {
-        console.warn(`Element with selector ${selector} not found`);
-        return;
-      }
-      const plugin = this.pluginStore.getPlugin(hook.plugin);
+    for (const [pluginName, hooks] of Object.entries(pluginHooks)) {
+      const plugin = this.pluginStore.getPlugin(pluginName);
       if (!plugin) {
-        console.warn(`Plugin with name ${hook.plugin} not found`);
+        console.warn(`Plugin with name ${pluginName} not found`);
         return;
       }
-      plugin.create(element, hook, this.theme)
-    };
+
+      plugin.initialize(hooks!, this.theme);
+    }
   }
 }
 

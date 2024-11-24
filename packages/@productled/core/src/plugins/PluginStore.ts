@@ -1,4 +1,4 @@
-import Plugin from './Plugin';
+import type { Plugin } from './Plugin';
 
 type pluginName = string;
 

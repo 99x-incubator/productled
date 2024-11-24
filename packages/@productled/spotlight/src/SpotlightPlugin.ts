@@ -1,5 +1,5 @@
-import { Hook, Theme, type Plugin } from "@productled/core";
-import { Spotlight, SpotlightConf } from "./Spotlight";
+import type { Hook, Theme, Plugin } from "@productled/core";
+import { Spotlight, type SpotlightConf } from "./Spotlight";
 
 class SpotlightPlugin implements Plugin {
     private key: string = Spotlight.PLUGIN_NAME;
@@ -7,11 +7,14 @@ class SpotlightPlugin implements Plugin {
     get Name(): string {
         return this.key;
     }
-    create(element: HTMLElement, hook: Hook, theme: Theme): void {
-        const spotlightConf: SpotlightConf = hook.config;
-        if (element) {
-            const spotlight = new Spotlight(element, theme);
-            spotlight.create(spotlightConf);
+    initialize(hooks: Hook[], theme: Theme): void {
+        for (const hook of hooks) {
+            const spotlightConf: SpotlightConf = hook.config;
+            const element = document.querySelector(hook.trigger.selector) as HTMLElement;
+            if (element) {
+                const spotlight = new Spotlight(element, theme);
+                spotlight.create(spotlightConf);
+            }
         }
     }
     removeAll(): void {

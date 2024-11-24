@@ -44,4 +44,4 @@ class RouteListener {
     }
 }
 
-export { RouteListener, RouteListenerFunc };
+export { RouteListener, type RouteListenerFunc };

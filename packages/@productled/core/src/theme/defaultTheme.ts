@@ -1,4 +1,4 @@
-import { Theme } from './ThemeManager';
+import type { Theme } from './ThemeManager';
 
 const basicTheme: Theme = {
   primaryColor: '#3498db',
@@ -35,4 +35,4 @@ const scandinavianTheme: Theme = {
 };
 
 
-export { scandinavianTheme as defaultTheme };
+export { basicTheme, scandinavianTheme as defaultTheme };

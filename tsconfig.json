@@ -1,14 +1,15 @@
 {
-    "compilerOptions": {
-      "target": "ESNext",
-      "module": "ESNext",
-      "moduleResolution": "node",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "outDir": "./dist"
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "packages/@productled/core"
     },
-    "include": ["packages/*/src"],
-    "exclude": ["node_modules"]
-  }
+    {
+      "path": "packages/@productled/tooltip"
+    },
+    {
+      "path": "packages/@productled/spotlight"
+    },
+  ]
+}
